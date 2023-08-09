@@ -10,6 +10,7 @@ dependencies:
     path: packages/auth_repository
   bloc: ^8.1.2
   cupertino_icons: ^1.0.5
+  dropdown_button2: ^2.3.7
   firebase_auth: ^4.7.2
   firebase_core: ^2.15.0
   flutter:
