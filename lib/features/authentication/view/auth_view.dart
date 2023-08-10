@@ -146,22 +146,72 @@ class _AuthViewState extends State<AuthView> {
 }
 
 class _PhoneNumberInput extends StatelessWidget {
-  const _PhoneNumberInput({super.key});
+  const _PhoneNumberInput();
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     return ConstrainedBox(
       constraints: const BoxConstraints(
         maxHeight: 50,
       ),
       child: Row(
         children: [
-          Container(
-            width: 60,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15.0),
-              color: const Color(0xff444444),
+          GestureDetector(
+            onTap: () => showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(25.0),
+                ),
+              ),
+              builder: (context) {
+                return Scrollbar(
+                  thumbVisibility: true,
+                  child: Container(
+                    height: size.height * .9,
+                    width: double.infinity,
+                    padding: const EdgeInsets.only(left: 20, right: 20),
+                    margin: const EdgeInsets.only(top: 20),
+                    child: ListView.builder(
+                      itemCount: 100,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                width: 1,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          child: CupertinoListTile(
+                            title: const Text(
+                              '\u{1F1E6}\u{1F1E9} Country Code',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                            ),
+                            backgroundColor: Colors.transparent,
+                            onTap: () {},
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              },
+            ),
+            child: Container(
+              width: 60,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                color: const Color(0xff444444),
+              ),
             ),
           ),
           const SizedBox(width: 10),
