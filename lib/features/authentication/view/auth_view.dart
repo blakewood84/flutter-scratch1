@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:scratch_one/constants/constants.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -62,7 +63,7 @@ class _AuthViewState extends State<AuthView> {
                         const SizedBox(height: 5),
                         ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 200),
-                          child: Text(
+                          child: const Text(
                             'Just for verification. We won\'t call you or give it to anyone.',
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -150,6 +151,8 @@ class _PhoneNumberInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final countries = kCountriesWithCodes.entries;
+
     final size = MediaQuery.sizeOf(context);
     return ConstrainedBox(
       constraints: const BoxConstraints(
@@ -175,9 +178,13 @@ class _PhoneNumberInput extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     margin: const EdgeInsets.only(top: 20),
                     child: ListView.builder(
-                      itemCount: 100,
+                      itemCount: countries.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
+                        final country = countries.elementAt(index);
+                        final text = country.key;
+                        // final value = country.value;
+
                         return Container(
                           decoration: const BoxDecoration(
                             border: Border(
@@ -188,9 +195,9 @@ class _PhoneNumberInput extends StatelessWidget {
                             ),
                           ),
                           child: CupertinoListTile(
-                            title: const Text(
-                              '\u{1F1E6}\u{1F1E9} Country Code',
-                              style: TextStyle(
+                            title: Text(
+                              text,
+                              style: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
                               ),

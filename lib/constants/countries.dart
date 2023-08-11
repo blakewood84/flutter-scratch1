@@ -1,5 +1,1229 @@
 // https://flagpedia.net/emoji
-const countriesWithCodes = {
+
+const kCountryFlags = {
+  'Afghanistan': {
+    'description': '\u{1F1E6}\u{1F1EB} Afghanistan (+93)',
+    'flag': '\u{1F1E6}\u{1F1EB}',
+    'phone': '+93',
+  },
+  'Albania': {
+    'description': '\u{1F1E6}\u{1F1F1} Albania (+355)',
+    'flag': '\u{1F1E6}\u{1F1F1}',
+    'phone': '+355',
+  },
+  'Algeria': {
+    'description': '_______',
+    'flag': '\u{1F1E9}\u{1F1FF}',
+    'phone': '+213',
+  },
+  'American Samoa': {
+    'description': '_______',
+    'flag': '\u{1F1E6}\u{1F1F8}',
+    'phone': '+1',
+  },
+  'Andorra': {
+    'description': '_______',
+    'flag': '\u{1F1E6}\u{1F1E9}',
+    'phone': '+376',
+  },
+  'Angola': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Anguilla': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Antigua & Barbuda': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Argentina': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Aruba': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Ascension Island': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Australia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Austria': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Azerbaijan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Åland Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '+358',
+  },
+  'Bahamas': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Bahrain': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Bangladesh': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Barbados': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Belarus': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Belgium': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Belize': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Benin': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Bermuda': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Bhutan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Bolivia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Bosnia & Herzegovina': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Botswana': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Brazil': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'British Virgin Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Brunei': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Burkina Faso': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Burundi': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Cambodia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Cameroon': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Canada': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Cape Verde': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Caribbean Netherlands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Cayman Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Central African Republic': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Chad': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Chagos Archipelago': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Chile': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'China mainland': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Christmas Island': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Cocos (Keeling) Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Columbia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Comoros': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Congo - Brazzaville': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Congo - Kinshasa': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Cook Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Costa Rica': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Côte d\'lvoire': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Croatia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Cuba': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Curaçao': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Cyprus': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Czechia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Denmark': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Djibouti': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Dominica': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Dominican Republic': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Ecuador': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Egypt': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'El Salvador': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Equatorial Guinea': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Eritrea': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Estonia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Eswatini': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Ethiopia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Falkland Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Faroe Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Fiji': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Finland': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'France': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'French Guiana': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'French Polynesia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Gabon': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Gambia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Georgia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Germany': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Ghana': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Gibraltar': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Greece': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Greenland': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Grenada': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Guadeloupe': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Guam': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Guatemala': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Guernsey': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  '______': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Guinea': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Guinea-Bissau': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Guyana': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Haiti': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Honduras': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Hong Kong': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Hungary': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Iceland': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'India': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Indonesia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Iran': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Iraq': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Ireland': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Isle of Man': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Israel': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Italy': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Jamaica': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Japan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Jersey': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Jordan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Kazakhstan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Kenya': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Kiribati': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Kosovo': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Kuwait': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Kyrgyzstan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Laos': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Latvia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Lebanon': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Lesotho': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Liberia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Libya': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Liechtenstein': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Lithuania': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Luxembourg': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Macao': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Madagascar': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Malawi': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Malaysia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Maldives': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Mali': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Malta': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Marshall Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Martinique': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Mauritania': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Mauritius': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Mayotte': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Mexico': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Micronesia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Moldova': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Monaco': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Mongolia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Montenegro': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Montserrat': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Morocco': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Mozambique': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Myanmar (Burma)': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Namibia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Nauru': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Nepal': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Netherlands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'New Caledonia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'New Zealand': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Nicaragua': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Niger': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Nigeria': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Niue': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Norfolk Island': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'North Korea': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'North Macedonia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Northern Mariana Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Norway': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Oman': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Pakistan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Palau': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Palestine': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Panama': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Papua New Guinea': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Paraguay': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Peru': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Philippines': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Poland': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Portugal': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Puerto Rico': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Qatar': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Réunion': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Romania': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Russia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Rwanda': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Samoa': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'San Marino': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Saudi Arabia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'São Tomé & Príncipe': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Senegal': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Serbia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Seychelles': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Sierra Leone': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Singapore': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Sint Maarten': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Slovakia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Slovenia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Solomon Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Somalia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'South Africa': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'South Korea': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'South Sudan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Spain': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Sri Lanka': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Saint Barthélemy': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'St. Helena': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'St. Kitts & Nevis': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'St. Lucia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'St. Martin': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'St. Pierre & Miquelon': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'St. Vincent & Grenadines': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Sudan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Suriname': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Svalbard & Jan Mayen': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Sweden': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Switzerland': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Syria': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Taiwan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Tajikistan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Tanzania': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Thailand': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Timor-Leste': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Togo': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Tokelau': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Tonga': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Trinidad & Tobago': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Tristan da Cunha': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Tunisia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Turkmenistan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Turks & Caicos Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Tuvalu': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Türkiye': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'U.S. Virgin Islands': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Uganda': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Ukraine': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'United Arab Emirates': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'United Kingdom': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'United States': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Uruguay': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Uzbekistan': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Vanuatu': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Vatican City': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Venezuela': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Vietnam': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Wallis & Futuna': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Western Sahara': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Yemen': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Zambia': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+  'Zimbabwe': {
+    'description': '_______',
+    'flag': '______',
+    'phone': '______',
+  },
+};
+
+const kCountriesWithCodes = {
   '\u{1F1E6}\u{1F1EB} Afghanistan (+93)': '+93',
   '\u{1F1E6}\u{1F1F1} Albania (+355)': '+355',
   '\u{1F1E9}\u{1F1FF} Algeria (+213)': '+213',
