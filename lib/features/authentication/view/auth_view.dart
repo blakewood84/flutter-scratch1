@@ -190,7 +190,7 @@ class _PhoneNumberInput extends StatelessWidget {
                           child: CupertinoListTile(
                             title: const Text(
                               '\u{1F1E6}\u{1F1E9} Country Code',
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
                               ),
