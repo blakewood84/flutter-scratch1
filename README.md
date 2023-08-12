@@ -1,3 +1,3 @@
 # scratch_one
 
-A Music Sharing Project
+A Music Sharing Project.
