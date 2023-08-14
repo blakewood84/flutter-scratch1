@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:scratch_one/constants/constants.dart';
+import 'package:scratch_one/constants/constants.dart' show kCountryOptions;
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -151,7 +151,7 @@ class _PhoneNumberInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final countries = kCountriesWithCodes.entries;
+    final countries = kCountryOptions.entries;
 
     final size = MediaQuery.sizeOf(context);
     return ConstrainedBox(
@@ -182,7 +182,7 @@ class _PhoneNumberInput extends StatelessWidget {
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         final country = countries.elementAt(index);
-                        final text = country.key;
+                        final text = country.value['description']!;
                         // final value = country.value;
 
                         return Container(

@@ -1,6 +1,6 @@
 // https://flagpedia.net/emoji
 
-const kCountryFlags = {
+const kCountryOptions = {
   'Afghanistan': {
     'description': '\u{1F1E6}\u{1F1EB} Afghanistan (+93)',
     'flag': '\u{1F1E6}\u{1F1EB}',
@@ -12,7 +12,7 @@ const kCountryFlags = {
     'phone': '+355',
   },
   'Algeria': {
-    'description': '\u{1F1E6}\u{1F1F1} Algeria (+213)',
+    'description': '\u{1F1E9}\u{1F1FF} Algeria (+213)',
     'flag': '\u{1F1E9}\u{1F1FF}',
     'phone': '+213',
   },
@@ -46,6 +46,11 @@ const kCountryFlags = {
     'flag': '\u{1F1E6}\u{1F1F7}',
     'phone': '+54',
   },
+  'Armenia': {
+    'description': '\u{1F1E6}\u{1F1F2} Armenia (+374)',
+    'flag': '\u{1F1E6}\u{1F1F2}',
+    'phone': '+374',
+  },
   'Aruba': {
     'description': '\u{1F1E6}\u{1F1FC} Aruba (+297)',
     'flag': '\u{1F1E6}\u{1F1FC}',
@@ -77,9 +82,9 @@ const kCountryFlags = {
     'phone': '+358',
   },
   'Bahamas': {
-    'description': '\u{1F1E7}\u{1F1F8} Bahamas (+242)',
+    'description': '\u{1F1E7}\u{1F1F8} Bahamas (+1)',
     'flag': '\u{1F1E7}\\u{1F1F8}',
-    'phone': '+242',
+    'phone': '+1',
   },
   'Bahrain': {
     'description': '\u{1F1E7}\u{1F1ED} Bahrain (+973)',
@@ -92,9 +97,9 @@ const kCountryFlags = {
     'phone': '+880',
   },
   'Barbados': {
-    'description': '\u{1F1E7}\u{1F1E7} Barbados (+246)',
+    'description': '\u{1F1E7}\u{1F1E7} Barbados (+1)',
     'flag': '\u{1F1E7}\u{1F1E7}',
-    'phone': '+246',
+    'phone': '+1',
   },
   'Belarus': {
     'description': '\u{1F1E7}\u{1F1FE} Belarus (+375)',
@@ -117,9 +122,9 @@ const kCountryFlags = {
     'phone': '+229',
   },
   'Bermuda': {
-    'description': '\u{1F1E7}\u{1F1F2} Bermuda (+441)',
+    'description': '\u{1F1E7}\u{1F1F2} Bermuda (+1)',
     'flag': '\u{1F1E7}\u{1F1F2}',
-    'phone': '+441',
+    'phone': '+1',
   },
   'Bhutan': {
     'description': '\u{1F1E7}\u{1F1F9} Bhutan (+975)',
@@ -147,9 +152,9 @@ const kCountryFlags = {
     'phone': '+55',
   },
   'British Virgin Islands': {
-    'description': '\u{1F1E7}\u{1F1EC} British Virgin Islands (+284)',
-    'flag': '\u{1F1E7}\u{1F1EC}',
-    'phone': '+284',
+    'description': '\u{1F1FB}\u{1F1EC} British Virgin Islands (+1)',
+    'flag': '\u{1F1FB}\u{1F1EC}',
+    'phone': '+1',
   },
   'Brunei': {
     'description': '\u{1F1E7}\u{1F1F3} Brunei (+673)',
@@ -197,9 +202,9 @@ const kCountryFlags = {
     'phone': '+599',
   },
   'Cayman Islands': {
-    'description': '\u{1F1F0}\u{1F1FE} Cayman Islands (+345)',
+    'description': '\u{1F1F0}\u{1F1FE} Cayman Islands (+1)',
     'flag': '\u{1F1F0}\u{1F1FE}',
-    'phone': '+345',
+    'phone': '+1',
   },
   'Central African Republic': {
     'description': '\u{1F1E8}\u{1F1EB} Central African Republic (+236)',
@@ -307,9 +312,9 @@ const kCountryFlags = {
     'phone': '+253',
   },
   'Dominica': {
-    'description': '\u{1F1E9}\u{1F1F2} Dominica (+767)',
+    'description': '\u{1F1E9}\u{1F1F2} Dominica (+1)',
     'flag': '\u{1F1E9}\u{1F1F2}',
-    'phone': '+767',
+    'phone': '+1',
   },
   'Dominican Republic': {
     'description': '\u{1F1E9}\u{1F1F4} Dominican Republic (+1 809/829/849)',
