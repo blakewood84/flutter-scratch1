@@ -129,7 +129,11 @@ class _AuthViewState extends State<AuthView> {
                                 vertical: 20,
                               ),
                             ),
-                            onPressed: canNext ? () {} : null,
+                            onPressed: canNext
+                                ? () {
+                                    context.read<AuthCubit>().verifyPhoneNumber();
+                                  }
+                                : null,
                             child: Text(
                               !showPhoneAuth ? 'Enter' : 'Next',
                               style: const TextStyle(
