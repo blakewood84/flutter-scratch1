@@ -146,14 +146,21 @@ class _AuthViewState extends State<AuthView> {
   }
 }
 
-class _PhoneNumberInput extends StatelessWidget {
+class _PhoneNumberInput extends StatefulWidget {
   const _PhoneNumberInput();
 
   @override
-  Widget build(BuildContext context) {
-    final countries = kCountryOptions.entries;
+  State<_PhoneNumberInput> createState() => _PhoneNumberInputState();
+}
 
+class _PhoneNumberInputState extends State<_PhoneNumberInput> {
+  final _countries = kCountryOptions.entries;
+  final _phoneCodeNotifier = ValueNotifier(kCountryOptions['United States']);
+
+  @override
+  Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+
     return ConstrainedBox(
       constraints: const BoxConstraints(
         maxHeight: 50,
@@ -178,12 +185,12 @@ class _PhoneNumberInput extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     margin: const EdgeInsets.only(top: 20),
                     child: ListView.builder(
-                      itemCount: countries.length,
+                      itemCount: _countries.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        final country = countries.elementAt(index);
-                        final text = country.value['description']!;
-                        // final value = country.value;
+                        final country = _countries.elementAt(index);
+                        final text = country.value['description'] ?? '';
+                        final countryOption = kCountryOptions[country.key];
 
                         return Container(
                           decoration: const BoxDecoration(
@@ -195,6 +202,11 @@ class _PhoneNumberInput extends StatelessWidget {
                             ),
                           ),
                           child: CupertinoListTile(
+                            onTap: () {
+                              _phoneCodeNotifier.value = countryOption;
+                              Navigator.of(context).pop();
+                            },
+                            backgroundColor: Colors.transparent,
                             title: Text(
                               text,
                               style: const TextStyle(
@@ -202,8 +214,6 @@ class _PhoneNumberInput extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             ),
-                            backgroundColor: Colors.transparent,
-                            onTap: () {},
                           ),
                         );
                       },
@@ -212,13 +222,24 @@ class _PhoneNumberInput extends StatelessWidget {
                 );
               },
             ),
-            child: Container(
-              width: 60,
-              height: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                color: const Color(0xff444444),
-              ),
+            child: ValueListenableBuilder(
+              valueListenable: _phoneCodeNotifier,
+              builder: (_, value, __) {
+                final phoneCode = value?['phone'] ?? '-❓-';
+                final flag = value?['flag'] ?? '❓';
+
+                return Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: const Color(0xff444444),
+                  ),
+                  child: Center(
+                    child: Text('$flag $phoneCode'),
+                  ),
+                );
+              },
             ),
           ),
           const SizedBox(width: 10),

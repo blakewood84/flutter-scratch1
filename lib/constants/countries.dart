@@ -33,7 +33,7 @@ const kCountryOptions = {
   },
   'Anguilla': {
     'description': '\u{1F1E6}\u{1F1EE} Anguilla (+264)',
-    'flag': '\u{1F1E6}\\u{1F1EE}',
+    'flag': '\u{1F1E6}\u{1F1EE}',
     'phone': '+264',
   },
   'Antigua & Barbuda': {
@@ -83,7 +83,7 @@ const kCountryOptions = {
   },
   'Bahamas': {
     'description': '\u{1F1E7}\u{1F1F8} Bahamas (+1)',
-    'flag': '\u{1F1E7}\\u{1F1F8}',
+    'flag': '\u{1F1E7}\u{1F1F8}',
     'phone': '+1',
   },
   'Bahrain': {
