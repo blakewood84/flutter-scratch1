@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthState {
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get phoneCode => throw _privateConstructorUsedError;
+  bool get canNext => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({String? phoneNumber, String? phoneCode});
+  $Res call({String? phoneNumber, String? phoneCode, bool canNext});
 }
 
 /// @nodoc
@@ -47,6 +48,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? phoneNumber = freezed,
     Object? phoneCode = freezed,
+    Object? canNext = null,
   }) {
     return _then(_value.copyWith(
       phoneNumber: freezed == phoneNumber
@@ -57,6 +59,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.phoneCode
           : phoneCode // ignore: cast_nullable_to_non_nullable
               as String?,
+      canNext: null == canNext
+          ? _value.canNext
+          : canNext // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -68,7 +74,7 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       __$$_AuthStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? phoneNumber, String? phoneCode});
+  $Res call({String? phoneNumber, String? phoneCode, bool canNext});
 }
 
 /// @nodoc
@@ -84,6 +90,7 @@ class __$$_AuthStateCopyWithImpl<$Res>
   $Res call({
     Object? phoneNumber = freezed,
     Object? phoneCode = freezed,
+    Object? canNext = null,
   }) {
     return _then(_$_AuthState(
       phoneNumber: freezed == phoneNumber
@@ -94,6 +101,10 @@ class __$$_AuthStateCopyWithImpl<$Res>
           ? _value.phoneCode
           : phoneCode // ignore: cast_nullable_to_non_nullable
               as String?,
+      canNext: null == canNext
+          ? _value.canNext
+          : canNext // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -101,7 +112,8 @@ class __$$_AuthStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthState implements _AuthState {
-  const _$_AuthState({this.phoneNumber = '+1', this.phoneCode = null});
+  const _$_AuthState(
+      {this.phoneNumber = '+1', this.phoneCode = null, this.canNext = false});
 
   @override
   @JsonKey()
@@ -109,10 +121,13 @@ class _$_AuthState implements _AuthState {
   @override
   @JsonKey()
   final String? phoneCode;
+  @override
+  @JsonKey()
+  final bool canNext;
 
   @override
   String toString() {
-    return 'AuthState(phoneNumber: $phoneNumber, phoneCode: $phoneCode)';
+    return 'AuthState(phoneNumber: $phoneNumber, phoneCode: $phoneCode, canNext: $canNext)';
   }
 
   @override
@@ -123,11 +138,12 @@ class _$_AuthState implements _AuthState {
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
             (identical(other.phoneCode, phoneCode) ||
-                other.phoneCode == phoneCode));
+                other.phoneCode == phoneCode) &&
+            (identical(other.canNext, canNext) || other.canNext == canNext));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, phoneNumber, phoneCode);
+  int get hashCode => Object.hash(runtimeType, phoneNumber, phoneCode, canNext);
 
   @JsonKey(ignore: true)
   @override
@@ -138,12 +154,16 @@ class _$_AuthState implements _AuthState {
 
 abstract class _AuthState implements AuthState {
   const factory _AuthState(
-      {final String? phoneNumber, final String? phoneCode}) = _$_AuthState;
+      {final String? phoneNumber,
+      final String? phoneCode,
+      final bool canNext}) = _$_AuthState;
 
   @override
   String? get phoneNumber;
   @override
   String? get phoneCode;
+  @override
+  bool get canNext;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>

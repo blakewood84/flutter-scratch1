@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scratch_one/constants/constants.dart' show kCountryOptions;
+import 'package:scratch_one/features/authentication/cubit/auth_cubit.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -245,6 +247,7 @@ class _PhoneNumberInputState extends State<_PhoneNumberInput> {
           const SizedBox(width: 10),
           Expanded(
             child: TextField(
+              controller: context.read<AuthCubit>().phoneInputController,
               autofocus: true,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
