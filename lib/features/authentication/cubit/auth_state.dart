@@ -11,5 +11,11 @@ class AuthState with _$AuthState {
 
     /// [bool] to allow the Next button to be clicked once phone [RegExp] passes
     @Default(false) bool canNext,
+
+    /// [bool] indicates if the code has been sent from Firebase to the user
+    @Default(false) bool codeSent,
+
+    /// [String] - User enters verification code.
+    @Default(null) String? verificationCode,
   }) = _AuthState;
 }

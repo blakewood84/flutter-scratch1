@@ -1,3 +1,5 @@
+import 'dart:developer' as devtools;
+
 import 'package:auth_repository/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -13,12 +15,23 @@ class AuthCubit extends Cubit<AuthState> {
   })  : _authRepository = authRepository,
         super(const AuthState()) {
     phoneInputController.addListener(() {
-      // TODO: Add RegExp for this for each country
-      if (phoneInputController.text.length < 7) return;
-      if (state.phoneCode == "+1" && phoneInputController.text.length == 7) {
+      if (state.phoneCode == "+1") {
         emit(
           state.copyWith(
-            canNext: true,
+            canNext: state.phoneCode == '+1' && phoneInputController.text.length == 10,
+          ),
+        );
+      }
+      devtools.log('phoneCode: ${state.phoneCode}');
+      devtools.log('phoneNumber: ${phoneInputController.text}');
+    });
+
+    _authRepository.codeSentStream.listen((event) {
+      devtools.log('event: $event');
+      if (event != null) {
+        emit(
+          state.copyWith(
+            codeSent: true,
           ),
         );
       }
@@ -43,4 +56,10 @@ class AuthCubit extends Cubit<AuthState> {
           ),
         ),
       );
+
+  void verifyPhoneNumber() async {
+    if (state.phoneNumber != null) {
+      await _authRepository.verifyPhoneNumber('${state.phoneCode}${state.phoneNumber}');
+    }
+  }
 }

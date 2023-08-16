@@ -16,6 +16,7 @@ class _AuthViewState extends State<AuthView> {
 
   @override
   Widget build(BuildContext context) {
+    final canNext = context.select((AuthCubit cubit) => cubit.state.canNext);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -92,30 +93,52 @@ class _AuthViewState extends State<AuthView> {
                           ),
                         ),
                       const SizedBox(height: 10),
-                      SizedBox(
-                        width: double.infinity,
-                        child: FilledButton(
-                          style: FilledButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: Colors.black,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 20,
+                      if (!showPhoneAuth)
+                        SizedBox(
+                          width: double.infinity,
+                          child: FilledButton(
+                            style: FilledButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20,
+                              ),
                             ),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              showPhoneAuth = true;
-                            });
-                          },
-                          child: Text(
-                            !showPhoneAuth ? 'Enter' : 'Next',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black,
+                            onPressed: () {
+                              setState(() {
+                                showPhoneAuth = true;
+                              });
+                            },
+                            child: Text(
+                              !showPhoneAuth ? 'Enter' : 'Next',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      if (showPhoneAuth)
+                        SizedBox(
+                          width: double.infinity,
+                          child: FilledButton(
+                            style: FilledButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20,
+                              ),
+                            ),
+                            onPressed: canNext ? () {} : null,
+                            child: Text(
+                              !showPhoneAuth ? 'Enter' : 'Next',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
                       const SizedBox(height: 10)
                     ],
                   ),
@@ -250,6 +273,7 @@ class _PhoneNumberInputState extends State<_PhoneNumberInput> {
               controller: context.read<AuthCubit>().phoneInputController,
               autofocus: true,
               keyboardType: TextInputType.phone,
+              onChanged: (value) => context.read<AuthCubit>().setPhoneNumber(value),
               decoration: InputDecoration(
                 isDense: true,
                 hintText: 'Enter Phone Number',

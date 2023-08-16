@@ -16,9 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AuthState {
+  /// Phone number for the user.
   String? get phoneNumber => throw _privateConstructorUsedError;
+
+  /// Phone Code for the region
   String? get phoneCode => throw _privateConstructorUsedError;
+
+  /// [bool] to allow the Next button to be clicked once phone [RegExp] passes
   bool get canNext => throw _privateConstructorUsedError;
+
+  /// [bool] indicates if the code has been sent from Firebase to the user
+  bool get codeSent => throw _privateConstructorUsedError;
+
+  /// [String] - User enters verification code.
+  String? get verificationCode => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -30,7 +41,12 @@ abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res, AuthState>;
   @useResult
-  $Res call({String? phoneNumber, String? phoneCode, bool canNext});
+  $Res call(
+      {String? phoneNumber,
+      String? phoneCode,
+      bool canNext,
+      bool codeSent,
+      String? verificationCode});
 }
 
 /// @nodoc
@@ -49,6 +65,8 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? phoneNumber = freezed,
     Object? phoneCode = freezed,
     Object? canNext = null,
+    Object? codeSent = null,
+    Object? verificationCode = freezed,
   }) {
     return _then(_value.copyWith(
       phoneNumber: freezed == phoneNumber
@@ -63,6 +81,14 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.canNext
           : canNext // ignore: cast_nullable_to_non_nullable
               as bool,
+      codeSent: null == codeSent
+          ? _value.codeSent
+          : codeSent // ignore: cast_nullable_to_non_nullable
+              as bool,
+      verificationCode: freezed == verificationCode
+          ? _value.verificationCode
+          : verificationCode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -74,7 +100,12 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       __$$_AuthStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? phoneNumber, String? phoneCode, bool canNext});
+  $Res call(
+      {String? phoneNumber,
+      String? phoneCode,
+      bool canNext,
+      bool codeSent,
+      String? verificationCode});
 }
 
 /// @nodoc
@@ -91,6 +122,8 @@ class __$$_AuthStateCopyWithImpl<$Res>
     Object? phoneNumber = freezed,
     Object? phoneCode = freezed,
     Object? canNext = null,
+    Object? codeSent = null,
+    Object? verificationCode = freezed,
   }) {
     return _then(_$_AuthState(
       phoneNumber: freezed == phoneNumber
@@ -105,6 +138,14 @@ class __$$_AuthStateCopyWithImpl<$Res>
           ? _value.canNext
           : canNext // ignore: cast_nullable_to_non_nullable
               as bool,
+      codeSent: null == codeSent
+          ? _value.codeSent
+          : codeSent // ignore: cast_nullable_to_non_nullable
+              as bool,
+      verificationCode: freezed == verificationCode
+          ? _value.verificationCode
+          : verificationCode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -113,21 +154,40 @@ class __$$_AuthStateCopyWithImpl<$Res>
 
 class _$_AuthState implements _AuthState {
   const _$_AuthState(
-      {this.phoneNumber = '+1', this.phoneCode = null, this.canNext = false});
+      {this.phoneNumber = null,
+      this.phoneCode = '+1',
+      this.canNext = false,
+      this.codeSent = false,
+      this.verificationCode = null});
 
+  /// Phone number for the user.
   @override
   @JsonKey()
   final String? phoneNumber;
+
+  /// Phone Code for the region
   @override
   @JsonKey()
   final String? phoneCode;
+
+  /// [bool] to allow the Next button to be clicked once phone [RegExp] passes
   @override
   @JsonKey()
   final bool canNext;
 
+  /// [bool] indicates if the code has been sent from Firebase to the user
+  @override
+  @JsonKey()
+  final bool codeSent;
+
+  /// [String] - User enters verification code.
+  @override
+  @JsonKey()
+  final String? verificationCode;
+
   @override
   String toString() {
-    return 'AuthState(phoneNumber: $phoneNumber, phoneCode: $phoneCode, canNext: $canNext)';
+    return 'AuthState(phoneNumber: $phoneNumber, phoneCode: $phoneCode, canNext: $canNext, codeSent: $codeSent, verificationCode: $verificationCode)';
   }
 
   @override
@@ -139,11 +199,16 @@ class _$_AuthState implements _AuthState {
                 other.phoneNumber == phoneNumber) &&
             (identical(other.phoneCode, phoneCode) ||
                 other.phoneCode == phoneCode) &&
-            (identical(other.canNext, canNext) || other.canNext == canNext));
+            (identical(other.canNext, canNext) || other.canNext == canNext) &&
+            (identical(other.codeSent, codeSent) ||
+                other.codeSent == codeSent) &&
+            (identical(other.verificationCode, verificationCode) ||
+                other.verificationCode == verificationCode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, phoneNumber, phoneCode, canNext);
+  int get hashCode => Object.hash(
+      runtimeType, phoneNumber, phoneCode, canNext, codeSent, verificationCode);
 
   @JsonKey(ignore: true)
   @override
@@ -156,14 +221,30 @@ abstract class _AuthState implements AuthState {
   const factory _AuthState(
       {final String? phoneNumber,
       final String? phoneCode,
-      final bool canNext}) = _$_AuthState;
+      final bool canNext,
+      final bool codeSent,
+      final String? verificationCode}) = _$_AuthState;
 
   @override
+
+  /// Phone number for the user.
   String? get phoneNumber;
   @override
+
+  /// Phone Code for the region
   String? get phoneCode;
   @override
+
+  /// [bool] to allow the Next button to be clicked once phone [RegExp] passes
   bool get canNext;
+  @override
+
+  /// [bool] indicates if the code has been sent from Firebase to the user
+  bool get codeSent;
+  @override
+
+  /// [String] - User enters verification code.
+  String? get verificationCode;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
