@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart' show BlocListener, BlocProvider,
 import 'package:scratch_one/features/authentication/cubit/auth_cubit.dart' show AuthCubit, AuthState;
 import 'package:scratch_one/features/authentication/view/view.dart' show AuthView;
 import 'package:scratch_one/features/authentication/widgets/confirmation.dart';
+import 'package:scratch_one/features/home/view/view.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -18,7 +19,9 @@ class AuthPage extends StatelessWidget {
       child: MultiBlocListener(
         listeners: [
           BlocListener<AuthCubit, AuthState>(
-            listenWhen: (previous, current) => current.codeSent == true,
+            listenWhen: (previous, current) {
+              return current.codeSent == true && previous.codeSent == false;
+            },
             listener: (lContext, state) {
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -29,7 +32,22 @@ class AuthPage extends StatelessWidget {
                 ),
               );
             },
-          )
+          ),
+          BlocListener<AuthCubit, AuthState>(
+            listenWhen: (previous, current) {
+              return previous.codeVerified == false && current.codeVerified == true;
+            },
+            listener: (_, state) {
+              Navigator.of(context).pushAndRemoveUntil(
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) => const HomePage(),
+                  transitionDuration: Duration.zero,
+                  reverseTransitionDuration: Duration.zero,
+                ),
+                (route) => false,
+              );
+            },
+          ),
         ],
         child: const AuthView(),
       ),

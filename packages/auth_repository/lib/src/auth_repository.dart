@@ -53,9 +53,12 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<Either<bool, Unit>> verifySmsCode(String smsCode) async {
     try {
+      final verificationId = _codeSentController.value ?? '';
+      devtools.log('verificationId: $verificationId');
+      devtools.log('smsCode: $smsCode');
       // Create a PhoneAuthCredential with the code
       final credential = PhoneAuthProvider.credential(
-        verificationId: _codeSentController.value ?? '',
+        verificationId: verificationId,
         smsCode: smsCode,
       );
 

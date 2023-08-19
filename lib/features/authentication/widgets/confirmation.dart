@@ -45,7 +45,9 @@ class _ConfirmationState extends State<Confirmation> {
                 autofocus: true,
                 keyboardType: TextInputType.phone,
                 onChanged: (value) async {
-                  if (value.length == 6) {}
+                  if (value.length == 6) {
+                    context.read<AuthCubit>().verifyPhoneCode(value);
+                  }
                 },
                 maxLength: 6,
                 textAlign: TextAlign.center,
@@ -125,10 +127,11 @@ class _ConfirmationState extends State<Confirmation> {
                       ),
                     ),
                     onPressed: () {
+                      context.read<AuthCubit>().verifyPhoneNumber();
                       _countdownNotifier.value = false;
                     },
                     child: const Text(
-                      'Next',
+                      'Resend',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
