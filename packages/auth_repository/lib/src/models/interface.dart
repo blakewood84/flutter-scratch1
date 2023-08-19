@@ -13,4 +13,7 @@ abstract interface class IAuthRepository {
 
   /// Signs in a user using their phone number.
   Future<Either<bool, Unit>> verifyPhoneNumber(String phoneNumber);
+
+  /// Verifies and confirms the SMS Code received by the user.
+  Future<Either<bool, Unit>> verifySmsCode(String code);
 }

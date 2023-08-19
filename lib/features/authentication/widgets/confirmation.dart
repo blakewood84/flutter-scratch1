@@ -25,7 +25,10 @@ class _ConfirmationState extends State<Confirmation> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: BackButton(
-          onPressed: () {},
+          onPressed: () {
+            // TODO: Reset State on Cubit
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Container(
@@ -41,7 +44,9 @@ class _ConfirmationState extends State<Confirmation> {
               child: TextField(
                 autofocus: true,
                 keyboardType: TextInputType.phone,
-                onChanged: (value) {},
+                onChanged: (value) async {
+                  if (value.length == 6) {}
+                },
                 maxLength: 6,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(

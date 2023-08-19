@@ -17,5 +17,8 @@ class AuthState with _$AuthState {
 
     /// [String] - User enters verification code.
     @Default(null) String? verificationCode,
+
+    /// [bool] to denote the SMS Code has been verified successfully or not.
+    @Default(false) bool codeVerified,
   }) = _AuthState;
 }

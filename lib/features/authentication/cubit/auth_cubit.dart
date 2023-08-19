@@ -40,6 +40,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   final IAuthRepository _authRepository;
   final phoneInputController = TextEditingController();
+  final codeConfirmationController = TextEditingController();
 
   void setPhoneCode(String phoneCode) => emit(
         state.copyWith(
@@ -59,7 +60,34 @@ class AuthCubit extends Cubit<AuthState> {
 
   void verifyPhoneNumber() async {
     if (state.phoneNumber != null) {
-      await _authRepository.verifyPhoneNumber('${state.phoneCode}${state.phoneNumber}');
+      final response = await _authRepository.verifyPhoneNumber(
+        '${state.phoneCode}${state.phoneNumber}',
+      );
+      response.fold(
+        (success) => null,
+        (error) {
+          devtools.log('Cubit: Error verifying phone number.');
+          // TODO: Emit Error Screen Dialog
+        },
+      );
     }
+  }
+
+  void verifyPhoneCode(String smsCode) async {
+    final response = await _authRepository.verifySmsCode(smsCode);
+    response.fold(
+      (success) {
+        devtools.log('Success! Code Verified');
+        emit(
+          state.copyWith(
+            codeVerified: true,
+          ),
+        );
+      },
+      (error) {
+        // TODO: Emit Error Screen Dialog
+        devtools.log('Cubit: Code was not verified successfully.');
+      },
+    );
   }
 }

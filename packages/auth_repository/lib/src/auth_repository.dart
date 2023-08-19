@@ -49,4 +49,26 @@ class AuthRepository implements IAuthRepository {
       return right(unit);
     }
   }
+
+  @override
+  Future<Either<bool, Unit>> verifySmsCode(String smsCode) async {
+    try {
+      // Create a PhoneAuthCredential with the code
+      final credential = PhoneAuthProvider.credential(
+        verificationId: _codeSentController.value ?? '',
+        smsCode: smsCode,
+      );
+
+      // Sign the user in (or link) with the credential
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      return left(true);
+    } on FirebaseAuthException catch (error, stackTrace) {
+      devtools.log(
+        'verifyPhoneNumber method exception: ',
+        error: error,
+        stackTrace: stackTrace,
+      );
+      return right(unit);
+    }
+  }
 }

@@ -31,6 +31,9 @@ mixin _$AuthState {
   /// [String] - User enters verification code.
   String? get verificationCode => throw _privateConstructorUsedError;
 
+  /// [bool] to denote the SMS Code has been verified successfully or not.
+  bool get codeVerified => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -46,7 +49,8 @@ abstract class $AuthStateCopyWith<$Res> {
       String? phoneCode,
       bool canNext,
       bool codeSent,
-      String? verificationCode});
+      String? verificationCode,
+      bool codeVerified});
 }
 
 /// @nodoc
@@ -67,6 +71,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? canNext = null,
     Object? codeSent = null,
     Object? verificationCode = freezed,
+    Object? codeVerified = null,
   }) {
     return _then(_value.copyWith(
       phoneNumber: freezed == phoneNumber
@@ -89,6 +94,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.verificationCode
           : verificationCode // ignore: cast_nullable_to_non_nullable
               as String?,
+      codeVerified: null == codeVerified
+          ? _value.codeVerified
+          : codeVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -105,7 +114,8 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       String? phoneCode,
       bool canNext,
       bool codeSent,
-      String? verificationCode});
+      String? verificationCode,
+      bool codeVerified});
 }
 
 /// @nodoc
@@ -124,6 +134,7 @@ class __$$_AuthStateCopyWithImpl<$Res>
     Object? canNext = null,
     Object? codeSent = null,
     Object? verificationCode = freezed,
+    Object? codeVerified = null,
   }) {
     return _then(_$_AuthState(
       phoneNumber: freezed == phoneNumber
@@ -146,6 +157,10 @@ class __$$_AuthStateCopyWithImpl<$Res>
           ? _value.verificationCode
           : verificationCode // ignore: cast_nullable_to_non_nullable
               as String?,
+      codeVerified: null == codeVerified
+          ? _value.codeVerified
+          : codeVerified // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -158,7 +173,8 @@ class _$_AuthState implements _AuthState {
       this.phoneCode = '+1',
       this.canNext = false,
       this.codeSent = false,
-      this.verificationCode = null});
+      this.verificationCode = null,
+      this.codeVerified = false});
 
   /// Phone number for the user.
   @override
@@ -185,9 +201,14 @@ class _$_AuthState implements _AuthState {
   @JsonKey()
   final String? verificationCode;
 
+  /// [bool] to denote the SMS Code has been verified successfully or not.
+  @override
+  @JsonKey()
+  final bool codeVerified;
+
   @override
   String toString() {
-    return 'AuthState(phoneNumber: $phoneNumber, phoneCode: $phoneCode, canNext: $canNext, codeSent: $codeSent, verificationCode: $verificationCode)';
+    return 'AuthState(phoneNumber: $phoneNumber, phoneCode: $phoneCode, canNext: $canNext, codeSent: $codeSent, verificationCode: $verificationCode, codeVerified: $codeVerified)';
   }
 
   @override
@@ -203,12 +224,14 @@ class _$_AuthState implements _AuthState {
             (identical(other.codeSent, codeSent) ||
                 other.codeSent == codeSent) &&
             (identical(other.verificationCode, verificationCode) ||
-                other.verificationCode == verificationCode));
+                other.verificationCode == verificationCode) &&
+            (identical(other.codeVerified, codeVerified) ||
+                other.codeVerified == codeVerified));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, phoneNumber, phoneCode, canNext, codeSent, verificationCode);
+  int get hashCode => Object.hash(runtimeType, phoneNumber, phoneCode, canNext,
+      codeSent, verificationCode, codeVerified);
 
   @JsonKey(ignore: true)
   @override
@@ -223,7 +246,8 @@ abstract class _AuthState implements AuthState {
       final String? phoneCode,
       final bool canNext,
       final bool codeSent,
-      final String? verificationCode}) = _$_AuthState;
+      final String? verificationCode,
+      final bool codeVerified}) = _$_AuthState;
 
   @override
 
@@ -245,6 +269,10 @@ abstract class _AuthState implements AuthState {
 
   /// [String] - User enters verification code.
   String? get verificationCode;
+  @override
+
+  /// [bool] to denote the SMS Code has been verified successfully or not.
+  bool get codeVerified;
   @override
   @JsonKey(ignore: true)
   _$$_AuthStateCopyWith<_$_AuthState> get copyWith =>
