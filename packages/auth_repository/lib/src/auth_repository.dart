@@ -26,6 +26,7 @@ class AuthRepository implements IAuthRepository {
     String phoneNumber, [
     int? forceResendingToken,
   ]) async {
+    devtools.log('phoneNumber: $phoneNumber');
     try {
       await FirebaseAuth.instance.verifyPhoneNumber(
         phoneNumber: phoneNumber,
