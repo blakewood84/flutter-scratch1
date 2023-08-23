@@ -277,7 +277,6 @@ class _PhoneNumberInputState extends State<_PhoneNumberInput> {
               controller: context.read<AuthCubit>().phoneInputController,
               autofocus: true,
               keyboardType: TextInputType.phone,
-              onChanged: (value) => context.read<AuthCubit>().setPhoneNumber(value),
               decoration: InputDecoration(
                 isDense: true,
                 hintText: 'Enter Phone Number',
