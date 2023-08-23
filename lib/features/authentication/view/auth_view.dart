@@ -23,10 +23,12 @@ class _AuthViewState extends State<AuthView> {
           children: [
             LayoutBuilder(
               builder: (context, constraints) {
-                return Padding(
+                return Container(
+                  width: constraints.maxWidth,
                   padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       AnimatedContainer(
                         width: showPhoneAuth ? 0 : 0,
@@ -54,30 +56,6 @@ class _AuthViewState extends State<AuthView> {
                           ),
                         ),
                       ),
-                      if (showPhoneAuth) ...[
-                        const SizedBox(height: 20),
-                        const Text(
-                          'Enter your phone number',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 200),
-                          child: const Text(
-                            'Just for verification. We won\'t call you or give it to anyone.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xff999999),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        const _PhoneNumberInput()
-                      ],
                       const Spacer(),
                       if (!showPhoneAuth)
                         Container(
@@ -118,31 +96,101 @@ class _AuthViewState extends State<AuthView> {
                             ),
                           ),
                         ),
-                      if (showPhoneAuth)
-                        SizedBox(
-                          width: double.infinity,
-                          child: FilledButton(
-                            style: FilledButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              foregroundColor: Colors.black,
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 20,
-                              ),
-                            ),
-                            onPressed: canNext
-                                ? () {
-                                    context.read<AuthCubit>().verifyPhoneNumber();
-                                  }
-                                : null,
-                            child: Text(
-                              !showPhoneAuth ? 'Enter' : 'Next',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
+                      // if (showPhoneAuth) ...[
+                      //   const SizedBox(height: 20),
+                      //   const Text(
+                      //     'Enter your phone number',
+                      //     style: TextStyle(
+                      //       fontSize: 20,
+                      //       fontWeight: FontWeight.w700,
+                      //     ),
+                      //   ),
+                      //   const SizedBox(height: 5),
+                      //   ConstrainedBox(
+                      //     constraints: const BoxConstraints(maxWidth: 200),
+                      //     child: const Text(
+                      //       'Just for verification. We won\'t call you or give it to anyone.',
+                      //       textAlign: TextAlign.center,
+                      //       style: TextStyle(
+                      //         fontSize: 14,
+                      //         color: Color(0xff999999),
+                      //       ),
+                      //     ),
+                      //   ),
+                      //   const SizedBox(height: 20),
+                      //   const _PhoneNumberInput()
+                      // ],
+
+                      // if (!showPhoneAuth)
+                      //   Container(
+                      //     constraints: const BoxConstraints(
+                      //       maxWidth: 200,
+                      //     ),
+                      //     child: const Text(
+                      //       'Listen, share, and organize unreleased music',
+                      //       textAlign: TextAlign.center,
+                      //       style: TextStyle(
+                      //         fontWeight: FontWeight.w700,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // const SizedBox(height: 10),
+                      // if (!showPhoneAuth)
+                      //   SizedBox(
+                      //     width: double.infinity,
+                      //     child: FilledButton(
+                      //       style: FilledButton.styleFrom(
+                      //         backgroundColor: Colors.white,
+                      //         foregroundColor: Colors.black,
+                      //         padding: const EdgeInsets.symmetric(
+                      //           vertical: 20,
+                      //         ),
+                      //       ),
+                      //       onPressed: () {
+                      //         setState(() {
+                      //           showPhoneAuth = true;
+                      //         });
+                      //       },
+                      //       child: Text(
+                      //         !showPhoneAuth ? 'Enter' : 'Next',
+                      //         style: const TextStyle(
+                      //           fontWeight: FontWeight.w700,
+                      //           color: Colors.black,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // if (showPhoneAuth)
+                      //   Expanded(
+                      //     child: PageView(
+                      //       children: [
+                      //         SizedBox(
+                      //           width: double.infinity,
+                      //           child: FilledButton(
+                      //             style: FilledButton.styleFrom(
+                      //               backgroundColor: Colors.white,
+                      //               foregroundColor: Colors.black,
+                      //               padding: const EdgeInsets.symmetric(
+                      //                 vertical: 20,
+                      //               ),
+                      //             ),
+                      //             onPressed: canNext
+                      //                 ? () {
+                      //                     context.read<AuthCubit>().verifyPhoneNumber();
+                      //                   }
+                      //                 : null,
+                      //             child: Text(
+                      //               !showPhoneAuth ? 'Enter' : 'Next',
+                      //               style: const TextStyle(
+                      //                 fontWeight: FontWeight.w700,
+                      //                 color: Colors.black,
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
                       const SizedBox(height: 10)
                     ],
                   ),
