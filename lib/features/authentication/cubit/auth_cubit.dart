@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer' as devtools;
 
 import 'package:auth_repository/auth_repository.dart';
@@ -13,13 +14,23 @@ class AuthCubit extends Cubit<AuthState> {
     required IAuthRepository authRepository,
   })  : _authRepository = authRepository,
         super(const AuthState()) {
+    devtools.log('Create Auth Bloc!');
+    devtools.log('State: $state');
     phoneInputController.addListener(_phoneInputHandler);
-    _authRepository.codeSentStream.listen(_codeSentHandler);
+    codeSentSubscription = _authRepository.codeSentStream.listen(_codeSentHandler);
   }
 
   final IAuthRepository _authRepository;
   final phoneInputController = TextEditingController();
   final codeConfirmationController = TextEditingController();
+  late final StreamSubscription codeSentSubscription;
+
+  @override
+  Future<void> close() {
+    devtools.log('close bloc!');
+    codeSentSubscription.cancel();
+    return super.close();
+  }
 
   void _phoneInputHandler() {
     devtools.log('phoneCode: ${state.phoneCode}');

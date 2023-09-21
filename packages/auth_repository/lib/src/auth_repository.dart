@@ -11,7 +11,11 @@ import 'package:rxdart/subjects.dart';
 /// {@endtemplate}
 class AuthRepository implements IAuthRepository {
   /// {@macro auth_repository}
-  AuthRepository();
+  AuthRepository({
+    required FirebaseAuth firebaseAuth,
+  }) : _firebaseAuth = firebaseAuth;
+
+  final FirebaseAuth _firebaseAuth;
 
   final _codeSentController = BehaviorSubject<String?>.seeded(null);
 
@@ -19,7 +23,7 @@ class AuthRepository implements IAuthRepository {
   Stream<String?> get codeSentStream => _codeSentController.stream;
 
   @override
-  User? get currentUser => FirebaseAuth.instance.currentUser;
+  User? get currentUser => _firebaseAuth.currentUser;
 
   @override
   Future<Either<bool, Unit>> verifyPhoneNumber(
@@ -28,7 +32,7 @@ class AuthRepository implements IAuthRepository {
   ]) async {
     devtools.log('phoneNumber: $phoneNumber');
     try {
-      await FirebaseAuth.instance.verifyPhoneNumber(
+      await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: (credential) {},
         verificationFailed: (failed) {},
@@ -63,7 +67,7 @@ class AuthRepository implements IAuthRepository {
       );
 
       // Sign the user in (or link) with the credential
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      await _firebaseAuth.signInWithCredential(credential);
       return left(true);
     } on FirebaseAuthException catch (error, stackTrace) {
       devtools.log(
@@ -73,5 +77,11 @@ class AuthRepository implements IAuthRepository {
       );
       return right(unit);
     }
+  }
+
+  @override
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
+    _codeSentController.add(null);
   }
 }

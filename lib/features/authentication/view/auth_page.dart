@@ -1,3 +1,5 @@
+import 'dart:developer' as devtools;
+
 import 'package:auth_repository/auth_repository.dart' show IAuthRepository;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocListener, BlocProvider, MultiBlocListener, ReadContext;
@@ -38,6 +40,8 @@ class AuthPage extends StatelessWidget {
               return previous.codeVerified == false && current.codeVerified == true;
             },
             listener: (_, state) {
+              devtools.log('Pop!');
+              Navigator.pop(context);
               Navigator.of(context).pushAndRemoveUntil(
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) => const HomePage(),

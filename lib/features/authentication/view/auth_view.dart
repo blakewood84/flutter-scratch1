@@ -56,8 +56,58 @@ class _AuthViewState extends State<AuthView> {
                           ),
                         ),
                       ),
+
+                      if (showPhoneAuth) ...[
+                        const SizedBox(height: 20),
+                        const Text(
+                          'Enter your phone number',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 200),
+                          child: const Text(
+                            'Just for verification. We won\'t call you or give it to anyone.',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xff999999),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        const _PhoneNumberInput(),
+                        const SizedBox(height: 20),
+                        SizedBox(
+                          width: double.infinity,
+                          child: FilledButton(
+                            style: FilledButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: Colors.black,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 20,
+                              ),
+                            ),
+                            onPressed: canNext
+                                ? () {
+                                    context.read<AuthCubit>().verifyPhoneNumber();
+                                  }
+                                : null,
+                            child: Text(
+                              !showPhoneAuth ? 'Enter' : 'Next',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                       const Spacer(),
-                      if (!showPhoneAuth)
+                      if (!showPhoneAuth) ...[
                         Container(
                           constraints: const BoxConstraints(
                             maxWidth: 200,
@@ -70,8 +120,7 @@ class _AuthViewState extends State<AuthView> {
                             ),
                           ),
                         ),
-                      const SizedBox(height: 10),
-                      if (!showPhoneAuth)
+                        const SizedBox(height: 10),
                         SizedBox(
                           width: double.infinity,
                           child: FilledButton(
@@ -96,30 +145,7 @@ class _AuthViewState extends State<AuthView> {
                             ),
                           ),
                         ),
-                      // if (showPhoneAuth) ...[
-                      //   const SizedBox(height: 20),
-                      //   const Text(
-                      //     'Enter your phone number',
-                      //     style: TextStyle(
-                      //       fontSize: 20,
-                      //       fontWeight: FontWeight.w700,
-                      //     ),
-                      //   ),
-                      //   const SizedBox(height: 5),
-                      //   ConstrainedBox(
-                      //     constraints: const BoxConstraints(maxWidth: 200),
-                      //     child: const Text(
-                      //       'Just for verification. We won\'t call you or give it to anyone.',
-                      //       textAlign: TextAlign.center,
-                      //       style: TextStyle(
-                      //         fontSize: 14,
-                      //         color: Color(0xff999999),
-                      //       ),
-                      //     ),
-                      //   ),
-                      //   const SizedBox(height: 20),
-                      //   const _PhoneNumberInput()
-                      // ],
+                      ],
 
                       // if (!showPhoneAuth)
                       //   Container(
@@ -164,30 +190,7 @@ class _AuthViewState extends State<AuthView> {
                       //   Expanded(
                       //     child: PageView(
                       //       children: [
-                      //         SizedBox(
-                      //           width: double.infinity,
-                      //           child: FilledButton(
-                      //             style: FilledButton.styleFrom(
-                      //               backgroundColor: Colors.white,
-                      //               foregroundColor: Colors.black,
-                      //               padding: const EdgeInsets.symmetric(
-                      //                 vertical: 20,
-                      //               ),
-                      //             ),
-                      //             onPressed: canNext
-                      //                 ? () {
-                      //                     context.read<AuthCubit>().verifyPhoneNumber();
-                      //                   }
-                      //                 : null,
-                      //             child: Text(
-                      //               !showPhoneAuth ? 'Enter' : 'Next',
-                      //               style: const TextStyle(
-                      //                 fontWeight: FontWeight.w700,
-                      //                 color: Colors.black,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
+
                       //       ],
                       //     ),
                       //   ),

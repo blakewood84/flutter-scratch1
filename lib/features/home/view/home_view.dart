@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:auth_repository/auth_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scratch_one/features/authentication/view/auth_page.dart';
 
 class HomeView extends StatelessWidget {
@@ -20,7 +21,7 @@ class HomeView extends StatelessWidget {
             const Text('Home View'),
             ElevatedButton(
               onPressed: () async {
-                await FirebaseAuth.instance.signOut();
+                await context.read<IAuthRepository>().signOut();
                 if (context.mounted) {
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(

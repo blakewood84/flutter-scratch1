@@ -1,4 +1,5 @@
 import 'package:auth_repository/auth_repository.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart' show WidgetsFlutterBinding, runApp;
 import 'package:scratch_one/app.dart' show App;
@@ -11,7 +12,9 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  final authRepository = AuthRepository();
+  final authRepository = AuthRepository(
+    firebaseAuth: FirebaseAuth.instance,
+  );
 
   runApp(App(
     authRepository: authRepository,

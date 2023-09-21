@@ -16,4 +16,7 @@ abstract interface class IAuthRepository {
 
   /// Verifies and confirms the SMS Code received by the user.
   Future<Either<bool, Unit>> verifySmsCode(String code);
+
+  /// Initiates the Sign Out of the User
+  Future<void> signOut();
 }
