@@ -23,6 +23,7 @@ class AuthCubit extends Cubit<AuthState> {
   final IAuthRepository _authRepository;
   final phoneInputController = TextEditingController();
   final codeConfirmationController = TextEditingController();
+  final pageController = PageController();
   late final StreamSubscription codeSentSubscription;
 
   @override
@@ -73,7 +74,10 @@ class AuthCubit extends Cubit<AuthState> {
         '${state.phoneCode}${state.phoneNumber}',
       );
       response.fold(
-        (success) => null,
+        (success) => pageController.nextPage(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        ),
         (error) {
           devtools.log('Cubit: Error verifying phone number.');
           // TODO: Emit Error Screen Dialog

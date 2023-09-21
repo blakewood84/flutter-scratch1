@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scratch_one/constants/constants.dart' show kCountryOptions;
 import 'package:scratch_one/features/authentication/cubit/auth_cubit.dart';
+import 'package:scratch_one/features/authentication/widgets/confirmation.dart';
+import 'package:scratch_one/features/authentication/widgets/countdown_button.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({super.key});
@@ -13,6 +15,7 @@ class AuthView extends StatefulWidget {
 
 class _AuthViewState extends State<AuthView> {
   bool showPhoneAuth = false;
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -56,56 +59,74 @@ class _AuthViewState extends State<AuthView> {
                           ),
                         ),
                       ),
-
-                      if (showPhoneAuth) ...[
-                        const SizedBox(height: 20),
-                        const Text(
-                          'Enter your phone number',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 200),
-                          child: const Text(
-                            'Just for verification. We won\'t call you or give it to anyone.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xff999999),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        const _PhoneNumberInput(),
-                        const SizedBox(height: 20),
+                      if (showPhoneAuth)
                         SizedBox(
-                          width: double.infinity,
-                          child: FilledButton(
-                            style: FilledButton.styleFrom(
-                              backgroundColor: Colors.white,
-                              foregroundColor: Colors.black,
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 20,
+                          height: 200,
+                          child: PageView(
+                            controller: context.read<AuthCubit>().pageController,
+                            onPageChanged: (value) {
+                              setState(() {
+                                index = value;
+                              });
+                            },
+                            children: [
+                              Column(
+                                children: [
+                                  const Text(
+                                    'Enter your phone number',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  ConstrainedBox(
+                                    constraints: const BoxConstraints(maxWidth: 200),
+                                    child: const Text(
+                                      'Just for verification. We won\'t call you or give it to anyone.',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Color(0xff999999),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  const _PhoneNumberInput(),
+                                  const SizedBox(height: 10),
+                                ],
                               ),
-                            ),
-                            onPressed: canNext
-                                ? () {
-                                    context.read<AuthCubit>().verifyPhoneNumber();
-                                  }
-                                : null,
-                            child: Text(
-                              !showPhoneAuth ? 'Enter' : 'Next',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black,
-                              ),
-                            ),
+                              const Confirmation(),
+                            ],
                           ),
                         ),
-                      ],
+                      if (showPhoneAuth)
+                        index == 0
+                            ? SizedBox(
+                                width: double.infinity,
+                                child: FilledButton(
+                                  style: FilledButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: Colors.black,
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 20,
+                                    ),
+                                  ),
+                                  onPressed: canNext
+                                      ? () {
+                                          context.read<AuthCubit>().verifyPhoneNumber();
+                                        }
+                                      : null,
+                                  child: const Text(
+                                    'Next',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : const CountdownButton(),
                       const Spacer(),
                       if (!showPhoneAuth) ...[
                         Container(
@@ -146,54 +167,6 @@ class _AuthViewState extends State<AuthView> {
                           ),
                         ),
                       ],
-
-                      // if (!showPhoneAuth)
-                      //   Container(
-                      //     constraints: const BoxConstraints(
-                      //       maxWidth: 200,
-                      //     ),
-                      //     child: const Text(
-                      //       'Listen, share, and organize unreleased music',
-                      //       textAlign: TextAlign.center,
-                      //       style: TextStyle(
-                      //         fontWeight: FontWeight.w700,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // const SizedBox(height: 10),
-                      // if (!showPhoneAuth)
-                      //   SizedBox(
-                      //     width: double.infinity,
-                      //     child: FilledButton(
-                      //       style: FilledButton.styleFrom(
-                      //         backgroundColor: Colors.white,
-                      //         foregroundColor: Colors.black,
-                      //         padding: const EdgeInsets.symmetric(
-                      //           vertical: 20,
-                      //         ),
-                      //       ),
-                      //       onPressed: () {
-                      //         setState(() {
-                      //           showPhoneAuth = true;
-                      //         });
-                      //       },
-                      //       child: Text(
-                      //         !showPhoneAuth ? 'Enter' : 'Next',
-                      //         style: const TextStyle(
-                      //           fontWeight: FontWeight.w700,
-                      //           color: Colors.black,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // if (showPhoneAuth)
-                      //   Expanded(
-                      //     child: PageView(
-                      //       children: [
-
-                      //       ],
-                      //     ),
-                      //   ),
                       const SizedBox(height: 10)
                     ],
                   ),
